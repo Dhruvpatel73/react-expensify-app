@@ -2,18 +2,18 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'developement';
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 if (process.env.NODE_ENV === 'test') {
-  require('dotenv').config({path: 'env.test'});
-} else if (process.env.NODE_ENV === 'developement'){
-  require('dotenv').config({path: 'env.developement'});
+  require('dotenv').config({ path: '.env.test' });
+} else if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config({ path: '.env.development' });
 }
 
 module.exports = (env) => {
-  const isProduction = env = "production";
+  const isProduction = env === 'production';
   const CSSExtract = new ExtractTextPlugin('styles.css');
-  console.log("env", env);
+
   return {
     entry: './src/app.js',
     output: {
@@ -21,12 +21,12 @@ module.exports = (env) => {
       filename: 'bundle.js'
     },
     module: {
-      rules: [{ // this counter tell compiler to run babel whenever it found jsx code
+      rules: [{
         loader: 'babel-loader',
-        test: /\.js$/, // we looking for any .js extension file
+        test: /\.js$/,
         exclude: /node_modules/
       }, {
-        test: /\.s?css$/, // we looking for any .scss ext file
+        test: /\.s?css$/,
         use: CSSExtract.extract({
           use: [
             {
@@ -55,14 +55,12 @@ module.exports = (env) => {
         'process.env.FIREBASE_STORAGE_BUCKET': JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
         'process.env.FIREBASE_MESSAGING_SENDER_ID': JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID)
       })
-
     ],
-    devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
+    devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
       contentBase: path.join(__dirname, 'public'),
       historyApiFallback: true,
       publicPath: '/dist/'
     }
-  };  
+  };
 };
-

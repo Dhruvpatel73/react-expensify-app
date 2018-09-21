@@ -2,7 +2,7 @@
   "name": "indecision-app",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Andrew Mead",
+  "author": "Dhruv Patel",
   "license": "MIT",
   "scripts": {
     "build:dev": "webpack",
@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "cross-env": "5.0.5",
+    "dotenv": "4.0.0",
     "enzyme": "3.0.0",
     "enzyme-to-json": "3.0.1",
     "jest": "^23.5.0",
