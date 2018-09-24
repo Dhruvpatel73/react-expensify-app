@@ -9,7 +9,6 @@ test('should set uid for login', () => {
   expect(state.uid).toBe(action.uid);
 });
 
-
 test('should clear uid for logout', () => {
   const action = {
     type: 'LOGOUT'
