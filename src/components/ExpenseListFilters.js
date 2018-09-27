@@ -30,15 +30,16 @@ export class ExpenseListFilters extends React.Component {
         <div className="input-group">
           <div className="input-group__item">
             <input
-              className="text-input"
               type="text"
-              placeholder="search expenses"
+              className="text-input"
+              placeholder="Search expenses"
               value={this.props.filters.text}
               onChange={this.onTextChange}
             />
           </div>
           <div className="input-group__item">
-            <select className="select"
+            <select
+              className="select"
               value={this.props.filters.sortBy}
               onChange={this.onSortChange}
             >
@@ -58,7 +59,7 @@ export class ExpenseListFilters extends React.Component {
               isOutsideRange={() => false}
             />
           </div>
-        </div>  
+        </div>
       </div>
     );
   }
